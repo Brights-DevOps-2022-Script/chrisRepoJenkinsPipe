@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Ansible Playbook') {
             steps {
-                credentialsId: 'ansCred'
+                ansiblePlaybook credentialsId: 'ansCred', playbook: 'playbook.yml'
                 script {
                     sh 'ansible-playbook playbook.yml -i Hostfile'
                 }
