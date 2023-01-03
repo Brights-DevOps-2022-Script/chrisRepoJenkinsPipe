@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     azure_rm_virtualmachine:
-      validate_certs: no 
+      validate_certs: false 
   - name: Create test.txt file
     copy:
       content: "This is a test file."
