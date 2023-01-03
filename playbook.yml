@@ -1,4 +1,6 @@
-- name: Create a file on the VM 
-    template: 
-      src: file.j2 
-      dest: /etc/file.txt
+- hosts: all
+  tasks:
+    - name: Create a file on the VM 
+        template: 
+            src: file.j2 
+            dest: /etc/file.txt
