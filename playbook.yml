@@ -1,6 +1,7 @@
 ---
 - hosts: all
-  validate_certs: false
+    get_url:
+      validate_certs: false
   tasks:
   - name: Create test.txt file
     copy:
