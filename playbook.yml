@@ -2,7 +2,9 @@
 - hosts: all
   tasks:
   - name: Create test.txt file
+    validate_certs: false
     copy:
       content: "This is a test file."
       dest: test.txt
       mode: 0644
+      
