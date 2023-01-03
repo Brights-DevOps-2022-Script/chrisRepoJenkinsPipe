@@ -1,3 +1,4 @@
+@Library('ansible-pipeline') _
 pipeline {
     agent {
         docker {
