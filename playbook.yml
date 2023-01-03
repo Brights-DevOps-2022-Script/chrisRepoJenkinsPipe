@@ -1,8 +1,8 @@
 ---
 - hosts: all
+  module_defaults:
+    validate_certs: false
   tasks:
-    module_defaults:
-      validate_certs: false
   - name: Create test.txt file
     copy:
       content: "This is a test file."
