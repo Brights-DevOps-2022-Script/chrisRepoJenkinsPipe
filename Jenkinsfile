@@ -5,6 +5,13 @@ pipeline {
         }
     }
     stages {
+        stage('Ansible Playbook') {
+            steps {
+                script {
+                    sh 'ansible-playbook playbook.yml -i Hostfile'
+                }
+             }
+         }
         stage('build') {
             steps {
                 sh 'echo building ...'
