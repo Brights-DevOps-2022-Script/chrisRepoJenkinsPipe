@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'ansible-playbook -v playbook.yml -i Hostfile'
+                    sh 'ansible-playbook playbook.yml -i Hostfile'
                 }
              }
          }
