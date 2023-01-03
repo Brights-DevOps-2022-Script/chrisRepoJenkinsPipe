@@ -1,6 +1,8 @@
+---
 - hosts: all
   tasks:
-    - name: Create a file on the VM 
-        template: 
-            src: file.j2 
-            dest: /etc/file.txt
+  - name: Create test.txt file
+    copy:
+      content: "This is a test file."
+      dest: test.txt
+      mode: 0644
