@@ -6,6 +6,9 @@ pipeline {
     }
     stages {
         stage('Ansible Playbook') {
+            environment {
+                BITBUCKET_COMMON_CREDS = credentials('ansCred')
+            }
             steps {
                 script {
                     sh 'ansible-playbook playbook.yml -i Hostfile'
