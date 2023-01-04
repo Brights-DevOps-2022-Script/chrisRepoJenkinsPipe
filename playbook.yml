@@ -12,6 +12,11 @@
       state: latest
       update_cache: true
       
+  - name: add docker apt key
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: "present"
+      
   - name: Check if Docker is started and if no, start Docker
     ansible.builtin.service: 
       name: docker
