@@ -23,7 +23,8 @@
       
   - name: Install the package "docker"
     ansible.builtin.apt:
-      name: docker
+      name: docker-ce
+      state: latest
       
   - name: Check if Docker is started and if no, start Docker
     ansible.builtin.service: 
