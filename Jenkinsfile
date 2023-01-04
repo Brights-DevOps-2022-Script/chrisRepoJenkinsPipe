@@ -25,7 +25,7 @@ pipeline {
                 sh "ansible --version"
             }
 
-            }
+            
         }
     }
 }
