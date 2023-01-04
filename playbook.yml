@@ -38,4 +38,9 @@
       uid: 1040
       group: admin
     
+  - name: Start a container with a command
+    community.docker.docker_container:
+      name: sleepy
+      image: ubuntu:14.04
+      command: ["run", "hello-world"]
       
