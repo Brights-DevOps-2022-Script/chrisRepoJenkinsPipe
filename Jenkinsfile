@@ -11,7 +11,9 @@ pipeline {
         stage('Ansible Playbook') {            
             steps {
                 script {
-                    sh 'ansible-playbook playbook.yml -i Hostfile'
+                    sh 'apk update'
+                    sh 'apk add --update --no-cache openssh sshpass'
+                    sh 'ansible-playbook playbook.yml -i Hostfile -e ansible_ssh_pass=$ANSIBLE_KEY_PSW'
                 }
              }
          }
