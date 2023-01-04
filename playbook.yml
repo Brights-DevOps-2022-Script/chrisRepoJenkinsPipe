@@ -3,7 +3,7 @@
   tasks:
   - name: Install Docker
     ansible.builtin.service: 
-    - name: docker
-      state: started
+    name: docker
+    state: started
     
       
