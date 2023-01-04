@@ -2,6 +2,7 @@
 - hosts: all
   become: yes
   tasks:  
+  
   - name: install dependencies
     ansible.builtin.apt:
       name:
@@ -17,8 +18,8 @@
       url: https://download.docker.com/linux/ubuntu/gpg
       
   - name: Add Docker Repository
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu focal stable
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
       
   - name: Check if Docker is started and if no, start Docker
     ansible.builtin.service: 
