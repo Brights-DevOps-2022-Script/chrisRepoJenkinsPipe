@@ -14,28 +14,17 @@ pipeline {
                 script {
                     sh 'apk update'
                     sh 'apk add --update --no-cache openssh sshpass'
-                    sh 'ansible-playbook playbook.yml -i Hostfile -e ansible_ssh_pass=$ANSIBLE_KEY_PSW'
+                    sh 'ansible-playbook playbook.yml -i Hostfile -e ansible_ssh_pass=$ANSIBLE_KEY_PSW -e ansible_user=$ANSIBLE_KEY_USR'
                 }
              }
          }
-        stage('build') {
+        stage('commands') {
             steps {
                 sh 'echo building ...'
-                sh "echo gansefusse test ... "
-                sh "which python || true"
-                sh "which python3 || true"
-                sh "which ansible || true"
+                sh "echo hallo"
                 sh "ansible --version"
             }
-        }
-        stage('test') {
-            steps {
-                sh 'echo testing ...'
-            }
-        }
-        stage('deploy') {
-            steps {
-                sh 'echo deploying ...'
+
             }
         }
     }
