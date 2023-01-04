@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  tasks:
+  tasks:  
   - ansible.builtin.service: 
       name: docker
       state: started
