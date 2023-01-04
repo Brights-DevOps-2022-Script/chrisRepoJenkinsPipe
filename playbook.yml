@@ -40,7 +40,8 @@
     
   - name: Start a container with a command
     community.docker.docker_container:
-      name: sleepy
-      image: ubuntu:14.04
+      name: docker
+      image: ubuntu:latest
+      pull: true
       command: ["run", "hello-world"]
       
