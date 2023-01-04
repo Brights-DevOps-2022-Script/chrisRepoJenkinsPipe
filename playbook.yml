@@ -1,6 +1,16 @@
 ---
 - hosts: all
   tasks:  
+  - name: install dependencies
+    ansible.builtin.apt:
+      name:
+        - ca-certificates
+        - curl
+        - gnupg
+        - lsb-release
+      state: latest
+      update_cache: true
+      
   - name: Check if Docker is started and if no, start Docker
     ansible.builtin.service: 
       name: docker
