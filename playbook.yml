@@ -1,9 +1,9 @@
 ---
 - hosts: all
   tasks:
-  - name: Create test.txt file
-    copy:
-      content: "This is a test file."
-      dest: test.txt
-      mode: 0644
+  - name: Install Docker
+    ansible.builtin.service: 
+    - name: docker
+      state: started
+    
       
