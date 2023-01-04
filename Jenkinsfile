@@ -4,11 +4,11 @@ pipeline {
             image 'cytopia/ansible'
         }
     }
+    environment {
+        ANSIBLE_KEY = credentials('ansCred')
+        ANSIBLE_HOST_KEY_CHECKING = 'False'
     stages {
-        stage('Ansible Playbook') {
-            environment {
-                BITBUCKET_COMMON_CREDS = credentials('ansCred')
-            }
+        stage('Ansible Playbook') {            
             steps {
                 script {
                     sh 'ansible-playbook playbook.yml -i Hostfile'
