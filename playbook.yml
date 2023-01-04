@@ -44,3 +44,8 @@
       image: hello-world
       pull: true
       
+  - name: Get infos on container
+    community.docker.docker_container_info:
+      name: docker_ps
+    register: result
+      
