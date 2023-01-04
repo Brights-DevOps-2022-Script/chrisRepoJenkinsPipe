@@ -1,2 +1,6 @@
 [vm]
 20.218.243.212
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=snowman
