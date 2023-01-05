@@ -46,4 +46,10 @@
     community.docker.docker_container:
       name: test
       image: hello-world
-      pull: true     
+      pull: true  
+      
+  - name: Run and log a docker command
+    ansible.builtin.shell: docker ps -a
+    register: result
+      debug: 
+      var: result.stdout
