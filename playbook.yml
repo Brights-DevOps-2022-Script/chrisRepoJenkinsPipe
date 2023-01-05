@@ -49,7 +49,7 @@
       pull: true  
       
   - name: Run and log a docker command
-    ansible.builtin.shell: docker ps -a
+    shell: docker ps -a
     register: result
     debug: 
       var: result.stdout
