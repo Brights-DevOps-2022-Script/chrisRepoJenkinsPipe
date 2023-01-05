@@ -51,10 +51,12 @@
       group: admin
     
   - name: Start a container with a command
-    community.docker.docker_container:
-      name: test
-      image: hello-world
-      pull: true  
+    ansible.builtin.shell: docker run hello-world
+    register: containername
+
+  - name: Show the docker command
+    debug:
+      var: containername.stdout
       
   - name: Run a docker command
     ansible.builtin.shell: docker ps -a
