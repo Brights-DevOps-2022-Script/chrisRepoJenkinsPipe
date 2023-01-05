@@ -48,8 +48,11 @@
       image: hello-world
       pull: true  
       
-  - name: Run and log a docker command
-    shell: docker ps -a
+  - name: Run a docker command
+    ansible.builtin.shell: docker ps -a
     register: result
+    
+  - name: Show the docker command
     debug: 
+      var: result.stdout
       var: result.stdout
