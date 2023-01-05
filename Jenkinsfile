@@ -7,7 +7,6 @@ pipeline {
     environment {
         ANSIBLE_KEY = credentials('ansCred')
         ANSIBLE_HOST_KEY_CHECKING = 'False'
-        ANSIBLE_STDOUT_CALLBACK = debug
     }
     stages {
         stage('Ansible Playbook') {            
