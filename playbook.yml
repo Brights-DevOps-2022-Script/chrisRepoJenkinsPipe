@@ -49,6 +49,14 @@
       comment: Christoph Schmid
       uid: 1040
       group: admin
+
+  - name: Check if User was added to group
+    ansible.builtin.shell: cat /etc/passwd | grep /bin/bash
+    register: username
+
+  - name: Show user command
+    debug:
+      var: username.stdout    
     
   - name: Start a container with a command
     ansible.builtin.shell: docker run hello-world
