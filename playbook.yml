@@ -37,7 +37,7 @@
       
   - name: Test if docker is running
     ansible.builtin.shell: service docker status
-      register: dockerrun
+    register: dockerrun
  
   - name: Output dockerrun command 
     debug:
