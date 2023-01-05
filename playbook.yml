@@ -55,4 +55,3 @@
   - name: Show the docker command
     debug: 
       var: result.stdout
-      var: result.stdout
