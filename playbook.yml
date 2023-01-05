@@ -44,6 +44,6 @@
     
   - name: Start a container with a command
     community.docker.docker_container:
-      name: hello-world
+      name: test
       image: hello-world
       pull: true     
