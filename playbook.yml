@@ -35,6 +35,14 @@
       name: docker
       state: started
       
+  - name: Test if docker is running
+    ansible.builtin.shell: service docker status
+      register: dockerrun
+ 
+  - name: Output dockerrun command 
+    debug:
+      var: dockerrun.stdout
+            
   - name: Add the user 'chrisS' with a specific uid and a primary group of 'admin'
     ansible.builtin.user:
       name: chrisS
