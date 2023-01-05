@@ -49,7 +49,7 @@
       pull: true  
       
   - name: Run a docker command
-    ansible.builtin.shell: docker ps -a | grep names
+    ansible.builtin.shell: docker ps -a
     register: result
     
   - name: Show the docker command
