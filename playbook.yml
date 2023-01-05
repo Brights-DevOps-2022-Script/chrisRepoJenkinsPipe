@@ -70,7 +70,7 @@
       var: containername.stdout
       
   - name: Run a docker command
-    ansible.builtin.shell: docker ps -a | head -n 2
+    ansible.builtin.shell: docker ps -a | head -n 2 | tail -n 1
     register: result
     
   - name: Show the docker command
