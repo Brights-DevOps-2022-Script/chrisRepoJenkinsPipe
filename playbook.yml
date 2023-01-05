@@ -1,6 +1,9 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    user_id: 1040
+    container_image: hello-world
   tasks:  
   
   - name: install dependencies
@@ -47,11 +50,11 @@
     ansible.builtin.user:
       name: chrisS
       comment: Christoph Schmid
-      uid: 1040
+      uid: "{{ user_id }}"
       group: admin
 
   - name: Check if User was added to group
-    ansible.builtin.shell: cat /etc/passwd | grep /bin/bash
+    ansible.builtin.shell: cat /etc/passwd | grep "{{ user_id }}"
     register: username
 
   - name: Show user command
@@ -59,7 +62,7 @@
       var: username.stdout    
     
   - name: Start a container with a command
-    ansible.builtin.shell: docker run hello-world
+    ansible.builtin.shell: docker run "{{ container_image }}"
     register: containername
 
   - name: Show the docker command
@@ -67,7 +70,7 @@
       var: containername.stdout
       
   - name: Run a docker command
-    ansible.builtin.shell: docker ps -a
+    ansible.builtin.shell: docker ps -a | head -n 2
     register: result
     
   - name: Show the docker command
