@@ -52,4 +52,4 @@
     ansible.builtin.shell: docker ps -a
     register: result
     debug: 
-    var: result.stdout
+      var: result.stdout
