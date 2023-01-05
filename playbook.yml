@@ -36,7 +36,7 @@
       state: started
       
   - name: Test if docker is running
-    ansible.builtin.shell: service docker status
+    ansible.builtin.shell: service docker status | grep Active
     register: dockerrun
  
   - name: Output dockerrun command 
@@ -57,7 +57,7 @@
       pull: true  
       
   - name: Run a docker command
-    ansible.builtin.shell: docker ps -a | grep NAMES
+    ansible.builtin.shell: docker ps -a
     register: result
     
   - name: Show the docker command
