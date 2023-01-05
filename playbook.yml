@@ -45,7 +45,7 @@
     
   - name: Start a container with a command
     community.docker.docker_container:
-      name: {{ image_name }}
+      name: "{{ image_name }}"
       image: hello-world
       pull: true  
       
