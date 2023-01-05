@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  image_name: helloooo
   become: yes
   tasks:  
   
@@ -45,12 +44,12 @@
     
   - name: Start a container with a command
     community.docker.docker_container:
-      name: "{{ image_name }}"
+      name: test
       image: hello-world
       pull: true  
       
   - name: Run a docker command
-    ansible.builtin.shell: docker ps -a | grep $image_name
+    ansible.builtin.shell: docker ps -a | grep NAMES
     register: result
     
   - name: Show the docker command
