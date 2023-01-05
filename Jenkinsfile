@@ -18,10 +18,14 @@ pipeline {
                 }
              }
          }
-        stage('commands') {
+        stage('test') {
             steps {
                 sh 'echo building ...'
-                sh "echo hallo"
+                sh "dpkg -l ca-certificates"
+                sh "dpkg -l curl"
+                sh "dpkg -l gnupg"
+                sh "dpkg -l lsb-release"
+                sh "docker --version"
                 sh "ansible --version"
             }
 
