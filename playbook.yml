@@ -48,20 +48,22 @@
   - name: Run a docker command
     ansible.builtin.shell: |
       echo ----------------------------------------
-      echo -----Check if docker is running-----
+      echo >>>>Check if docker is running<<<<
       service docker status | grep Active
       
       echo ----------------------------------------
-      echo -----Check if User is added-----
+      echo >>>>Check if User is added<<<<
       cat /etc/passwd | grep "{{ user_id }}"
       
       echo ----------------------------------------
-      echo -----Run the docker container-----
+      echo >>>>Run the docker container<<<<
       docker ps -a | head -n 2 | tail -n 1
-      
+
       echo ----------------------------------------
-      echo -----Check if docker container is running-----
+      echo >>>>Check if docker container is running<<<<
       docker run "{{ container_image }}" | head -n 2 | tail -n 1
+      echo ----------------------------------------
+      echo >>>>>>>>>>END OF TESTS<<<<<<<<<<<
     register: result
 
     
