@@ -67,4 +67,4 @@
     
   - name: Show the docker commands
     debug: 
-      var: result.stdout
+      var: result.stdout_lines
