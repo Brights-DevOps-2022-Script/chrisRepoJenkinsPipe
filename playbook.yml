@@ -37,14 +37,6 @@
     ansible.builtin.service: 
       name: docker
       state: started
-      
-  - name: Test if docker is running
-    ansible.builtin.shell: service docker status | grep Active
-    register: dockerrun
- 
-  - name: Output dockerrun command 
-    debug:
-      var: dockerrun.stdout
             
   - name: Add the user 'chrisS' with a specific uid and a primary group of 'admin'
     ansible.builtin.user:
@@ -52,27 +44,20 @@
       comment: Christoph Schmid
       uid: "{{ user_id }}"
       group: admin
-
-  - name: Check if User was added to group
-    ansible.builtin.shell: cat /etc/passwd | grep "{{ user_id }}"
-    register: username
-
-  - name: Show user command
-    debug:
-      var: username.stdout    
-    
-  - name: Start a container with a command
-    ansible.builtin.shell: docker run "{{ container_image }}"
-    register: containername
-
-  - name: Show the docker command
-    debug:
-      var: containername.stdout
       
   - name: Run a docker command
-    ansible.builtin.shell: docker ps -a | head -n 2 | tail -n 1
+    ansible.builtin.shell: |
+      echo -----Check if docker is running-----
+      service docker status | grep Active
+      echo -----Check if User is added-----
+      cat /etc/passwd | grep "{{ user_id }}"
+      echo -----Run the docker container-----
+      docker ps -a | head -n 2 | tail -n 1
+      echo -----Check if docker container is running-----
+      docker run "{{ container_image }}"
     register: result
+
     
-  - name: Show the docker command
+  - name: Show the docker commands
     debug: 
       var: result.stdout
