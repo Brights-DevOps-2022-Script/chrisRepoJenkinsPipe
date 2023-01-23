@@ -95,5 +95,5 @@
       ports:
         - "8080:8080"
         - "50000:50000"
-    restart_policy: on-failure
-    detach: true
+      restart_policy: on-failure
+      detach: true
