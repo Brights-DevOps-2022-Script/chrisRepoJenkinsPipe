@@ -70,3 +70,8 @@
   - name: Show the docker commands
     debug: 
       var: result.stdout_lines
+
+  - name: Copy Dockerfile onto VM
+    copy: 
+      src: Dockerfile
+      dest: /home/knight
