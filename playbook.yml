@@ -77,14 +77,16 @@
       dest: /home/knight
 
   - name: Build Jenkins image
-    docker_image:
-      path: .
-      name: mypackages/jenkins:lts-jdk11
+    community.docker.docker_image:
+      name: jenkins
+      build:
+        path: .
+      source: build
 
   - name: Run Jenkins container
     docker_container:
       name: jenkins
-      image: jenkins/jenkins:lts-jdk11
+      image: jenkins
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - jenkins_home:/var/jenkins_home
@@ -92,4 +94,3 @@
         - "8080:8080"
         - "50000:50000"
       restart_policy: on-failure
-      detach: true
