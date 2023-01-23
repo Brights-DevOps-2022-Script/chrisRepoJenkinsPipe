@@ -94,3 +94,12 @@
       ports:
         - "8080:8080"
       restart_policy: on-failure
+
+  - name: Create Jenkins admin user
+    jenkins_user:
+      name: admin
+      password: admin
+      email: admin@example.com
+      full_name: "Jenkins Administrator"
+      roles:
+        - admin
