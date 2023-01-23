@@ -77,18 +77,14 @@
       dest: /home/knight
 
   - name: Build Jenkins image
-    become: true
     docker_image:
       path: .
       name: mypackages/jenkins:lts-jdk11
-      state: present
 
   - name: Run Jenkins container
-    become: true
     docker_container:
       name: jenkins
       image: jenkins/jenkins:lts-jdk11
-      state: present
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - jenkins_home:/var/jenkins_home
