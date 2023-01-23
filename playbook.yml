@@ -74,7 +74,7 @@
     register: initial_password
 
   - name: Unlock Jenkins
-    jenkins:
+    jenkins_job:
       url: http://20.218.219.173:8080
       user: admin
       password: "{{ initial_password.stdout }}"
