@@ -44,32 +44,6 @@
       comment: Christoph Schmid
       uid: "{{ user_id }}"
       group: admin
-      
-  - name: Run a docker command
-    ansible.builtin.shell: |
-      echo ----------------------------------------
-      echo Check if docker is running
-      service docker status | grep Active
-      
-      echo ----------------------------------------
-      echo Check if User is added
-      cat /etc/passwd | grep "{{ user_id }}"
-      
-      echo ----------------------------------------
-      echo Run the docker container
-      docker ps -a | head -n 2 | tail -n 1
-
-      echo ----------------------------------------
-      echo Check if docker container is running
-      docker run "{{ container_image }}" | head -n 2 | tail -n 1
-      echo ----------------------------------------
-      echo END OF TESTS
-    register: result
-
-    
-  - name: Show the docker commands
-    debug: 
-      var: result.stdout_lines
 
   - name: Copy Dockerfile onto VM
     copy: 
@@ -95,11 +69,13 @@
         - "8080:8080"
       restart_policy: on-failure
 
-  - name: Create Jenkins admin user
-    jenkins_user:
-      name: admin
-      password: admin
-      email: admin@example.com
-      full_name: "Jenkins Administrator"
-      roles:
-        - admin
+  - name: Retrieve Jenkins initial admin password
+    shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+    register: initial_password
+
+  - name: Unlock Jenkins
+    jenkins:
+      url: http://20.218.219.173:8080
+      user: admin
+      password: "{{ initial_password.stdout }}"
+      state: unlocked
