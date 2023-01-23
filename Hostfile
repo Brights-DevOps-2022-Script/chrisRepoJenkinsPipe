@@ -1,5 +1,5 @@
 [vm]
-20.218.243.212
+20.218.219.173
 
 [all:vars]
 ansible_connection=ssh
