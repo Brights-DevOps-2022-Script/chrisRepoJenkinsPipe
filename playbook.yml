@@ -81,5 +81,11 @@
       executable: pip3
 
   - name: Login to Jenkins
-    jenkins_script:
-      script: "import jenkins.model.*; import hudson.security.*; def hudsonRealm = Hudson.getInstance().getSecurityRealm(); def user = hudsonRealm.getUser('admin'); def auth = new hudson.security.HudsonPrivateSecurityRealm.Details(); auth.setPassword('admin'); hudsonRealm.createAccount(user, auth)"
+    uri:
+      url: http://20.218.219.173:8080/j_acegi_security_check
+      method: POST
+      body: "j_username=admin&j_password=admin"
+      headers:
+        Content-Type: "application/x-www-form-urlencoded"
+      return_content: yes
+      status_code: 200
