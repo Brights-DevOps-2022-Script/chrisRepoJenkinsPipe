@@ -82,7 +82,7 @@
 
   - name: Login to Jenkins
     uri:
-      url: http://jenkins.example.com/j_acegi_security_check
+      url: http://20.218.219.173:8080/j_acegi_security_check
       method: POST
       body: j_username=admin&j_password=password
       return_content: yes
