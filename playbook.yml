@@ -69,6 +69,11 @@
         - "8080:8080"
       restart_policy: on-failure
 
+  - name: Install python-jenkins
+    pip:
+      name: python-jenkins
+      state: present
+      
   - name: Create a jenkins job using basic authentication
     community.general.jenkins_job:
       name: test
