@@ -80,27 +80,11 @@
       state: present
       executable: pip3
 
-  - name: Get crumb
-    uri:
-      url: http://20.218.219.173:8080/crumbIssuer/api/xml
-      user: admin
-      password: admin
-      return_content: yes
-    register: crumb_response
-
-  - name: Set crumb variable
-    set_fact:
-      crumb: "{{ crumb_response.content | from_xml | json_query('crumb[0].crumb') }}"
-      crumb_name: "{{ crumb_response.content | from_xml | json_query('crumb[0].crumbRequestField') }}"
-
   - name: Login to Jenkins
     uri:
-      url: http://20.218.219.173:8080/j_acegi_security_check
+      url: http://jenkins.example.com/j_acegi_security_check
       method: POST
-      body: "j_username=admin&j_password=admin"
-      headers:
-        Content-Type: "application/x-www-form-urlencoded"
-        "{{ crumb_name }}": "{{ crumb }}"
+      body: j_username=admin&j_password=password
       return_content: yes
       status_code: 200
 
