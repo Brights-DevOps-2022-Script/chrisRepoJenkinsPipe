@@ -82,9 +82,16 @@
 
   - name: Get crumb
     uri:
+      url: http://20.218.219.173:8080/crumbIssuer/api/xml
       user: admin
       password: admin
-    register: crumb
+      return_content: yes
+    register: crumb_response
+
+  - name: Set crumb variable
+    set_fact:
+      crumb: "{{ crumb_response.content | from_xml | json_query('crumb[0].crumb') }}"
+      crumb_name: "{{ crumb_response.content | from_xml | json_query('crumb[0].crumbRequestField') }}"
 
   - name: Login to Jenkins
     uri:
@@ -93,6 +100,7 @@
       body: "j_username=admin&j_password=admin"
       headers:
         Content-Type: "application/x-www-form-urlencoded"
-        "{{ crumb.crumb_name }}": "{{ crumb.crumb }}"
+        "{{ crumb_name }}": "{{ crumb }}"
       return_content: yes
       status_code: 200
+
